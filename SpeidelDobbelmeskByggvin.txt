@@ -1,0 +1,44 @@
+Recipe: #44 Annual Ninja Parade
+Brewer: Per Christian
+Style: American Barleywine
+
+Recipe Specifications
+--------------------------
+Boil Size: 24.93 l
+Post Boil Volume: 21.93 l
+Batch Size (fermenter): 20.00 l   
+Bottling Volume: 19.00 l
+Estimated OG: 1.108 SG
+Estimated Color: 27.3 EBC
+Estimated IBU: 112.0 IBUs
+Brewhouse Efficiency: 70.00 %
+Est Mash Efficiency: 75.8 %
+Boil Time: 60 Minutes
+
+Ingredients:
+------------
+Amt                   Name                                     Type          #        %/IBU         
+8.00 kg               Pale Malt (Weyermann) (6.5 EBC)          Grain         1        84.2 %        
+0.50 kg               Munich Malt (17.7 EBC)                   Grain         2        5.3 %         
+0.25 kg               Caramel/Crystal Malt - 20L (39.4 EBC)    Grain         3        2.6 %         
+0.25 kg               Caramel/Crystal Malt -120L (236.4 EBC)   Grain         4        2.6 %         
+0.50 kg               Sugar, Table (Sucrose) (2.0 EBC)         Sugar         5        5.3 %         
+60.00 g               Cascade II [5.60 %] - Boil 60.0 min      Hop           6        26.8 IBUs     
+60.00 g               Cascade II [5.60 %] - Boil 30.0 min      Hop           7        20.6 IBUs     
+60.00 g               Amarillo Gold [8.70 %] - Boil 15.0 min   Hop           8        20.6 IBUs     
+60.00 g               Cascade II [5.60 %] - Boil 15.0 min      Hop           9        13.3 IBUs     
+60.00 g               Simcoe [13.00 %] - Boil 15.0 min         Hop           10       30.8 IBUs     
+60.00 g               Amarillo Gold [8.70 %] - Steep/Whirlpool Hop           11       0.0 IBUs      
+60.00 g               Cascade II [5.60 %] - Steep/Whirlpool  0 Hop           12       0.0 IBUs      
+60.00 g               Simcoe [13.00 %] - Steep/Whirlpool  0.0  Hop           13       0.0 IBUs      
+1.0 pkg               London Ale III (Wyeast Labs #1318) [124. Yeast         14       -             
+
+Mash Schedule: Temperature Mash, 1 Step, Medium Body
+Total Grain Weight: 9.50 kg
+
+Mesket på 65 grader i to omganger. Først 4.5 kilo malt (med all spesialmalt) i 45 minutter, deretter lempet jeg den delen av mesken i den gamle BIAB posen min (gamle venn!) og batch sparget to ganger med 3 liter hver gang.
+Mens dette foregikk tok jeg resten av pale malten i en time på 65 grader før vanlig utmesk, før jeg skylte med vørteren fra batch spargingen av den første runden pluss nok vann til å få 25 liter vørter før kok.
+
+Fikk 20.5 liter med 1.102 vørter etter en times kok, som er litt mindre enn målet på 1.108. Siden det er første gang jeg prøver får det være bra nok.
+Vørteren ble dumpet rett på en gjærkake fra en ordinary bitter jeg tappet på fat mens jeg ventet på at trub og gunk skulle felle ut etter kjøling, så gjærmengden i oppskriften er vel mer veiledende.
+Innser nå at jeg har glemt å planlegge med tørrhumle i oppskriften. Kommer vel til å lempe oppi rundt 200 gram tørrhumle også før den skal på fat. 
