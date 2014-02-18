@@ -8,14 +8,14 @@ weightdata = np.genfromtxt("weight_vs_efficiency.csv", \
                         delimiter=",", names=True)
 
 wfit = np.polyfit(weightdata["Grainweight_g"], \
-                        weightdata["Efficiency_"],1)
+                        weightdata["Efficiency_"], 1)
 wfit_fn = np.poly1d(wfit)
 
 attdata = np.genfromtxt("mash_temp_vs_attenuation.csv", \
                         delimiter=",", names=True)
 
 afit = np.polyfit(attdata["Mash_temperature_C"], \
-                        attdata["Attenuation_"],1)
+                        attdata["Attenuation_"], 1)
 afit_fn = np.poly1d(afit)
 
 
