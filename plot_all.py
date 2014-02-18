@@ -29,22 +29,23 @@ ayp = np.polyval(aparams, axp)
 #error band
 asig = np.std(ay - np.polyval(aparams, ax))
 
-
 pl.subplot(2, 1, 1)
 pl.title("Braumeister efficiency")
 
-pl.plot(weightdata["Grainweight_g"], weightdata["Efficiency_"], "ro")
 pl.plot(wxp, wyp, 'k')
 pl.fill_between(wxp, wyp - wsig, wyp + wsig, color='g', alpha=0.2)
+pl.plot(weightdata["Grainweight_g"], weightdata["Efficiency_"], "ro")
+
 pl.xlabel("Grain weight [g]")
 pl.ylabel("Efficiency [%]")
 pl.grid()
 
 pl.subplot(2, 1, 2)
 pl.title("Mash temp vs yeast attenuation")
-pl.plot(attdata["Mash_temperature_C"], attdata["Attenuation_"], "ro")
+
 pl.plot(axp, ayp, 'k')
 pl.fill_between(axp, ayp - asig, ayp + asig, color='g', alpha=0.2)
+pl.plot(attdata["Mash_temperature_C"], attdata["Attenuation_"], "yo")
 
 pl.xlabel("Temperature [C]")
 pl.ylabel("Attenuation [%]")
