@@ -23,30 +23,32 @@ ay =  attdata["Attenuation_"]
 
 #fit 2nd order polynomial
 aparams = np.polyfit(ax, ay, 1)
-axp = np.linspace(80, 55, 2)
+axp = np.linspace(90, 55, 2)
 ayp = np.polyval(aparams, axp)
 
 #error band
 asig = np.std(ay - np.polyval(aparams, ax))
 
-
 pl.subplot(2, 1, 1)
-pl.title("Braumeister efficiency")
+pl.title("Measured efficiency", fontsize=16)
 
-pl.plot(weightdata["Grainweight_g"], weightdata["Efficiency_"], "ro")
 pl.plot(wxp, wyp, 'k')
 pl.fill_between(wxp, wyp - wsig, wyp + wsig, color='g', alpha=0.2)
+pl.plot(weightdata["Grainweight_g"], weightdata["Efficiency_"], "ro")
+pl.xlim(2500,7000)
 pl.xlabel("Grain weight [g]")
 pl.ylabel("Efficiency [%]")
 pl.grid()
 
 pl.subplot(2, 1, 2)
-pl.title("Mash temp vs yeast attenuation")
-pl.plot(attdata["Mash_temperature_C"], attdata["Attenuation_"], "ro")
+pl.title("Mash temp vs yeast attenuation", fontsize=16)
+
 pl.plot(axp, ayp, 'k')
 pl.fill_between(axp, ayp - asig, ayp + asig, color='g', alpha=0.2)
-
-pl.xlabel("Temperature [C]")
+pl.plot(attdata["Mash_temperature_C"], attdata["Attenuation_"], "yo")
+pl.xlim(55,90)
+pl.xlabel(r"Temperature [$^{\circ}\mathrm{C}$]")
 pl.ylabel("Attenuation [%]")
 pl.grid()
+pl.tight_layout()
 pl.show()
