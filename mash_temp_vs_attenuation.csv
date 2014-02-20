@@ -1,3 +1,8 @@
 Mash temperature [C],Attenuation [%],Yeast type,Remarks
-65,79,WLP830,'Waay more attenuation than expected'
-67,75,WLP830,'dummydata'
+65,79,WLP830,'In Grande Mexican Lager - more attenuation than expected'
+65,85,S05,"dummydata from woodlandbrew"
+67.8,78,WLP004,"dummydata from woodlandbrew"
+70,63,WLP004,"dummydata from woodlandbrew"
+66.7,85,WLP004,"dummydata from woodlandbrew"
+65.6,80,WLP862,"dummydata from woodlandbrew"
+66.7,84,WLP566,"dummydata from woodlandbrew"
