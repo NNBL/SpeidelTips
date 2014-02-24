@@ -22,8 +22,8 @@ ax = attdata["Mash_temperature_C"]
 ay =  attdata["Attenuation_"]
 
 #fit 2nd order polynomial
-aparams = np.polyfit(ax, ay, 1)
-axp = np.linspace(90, 55, 2)
+aparams = np.polyfit(ax, ay, 2)
+axp = np.linspace(90, 55, 100)
 ayp = np.polyval(aparams, axp)
 
 #error band
@@ -44,9 +44,10 @@ pl.subplot(2, 1, 2)
 pl.title("Mash temp vs yeast attenuation", fontsize=16)
 
 pl.plot(axp, ayp, 'k')
+pl.ylim(40,100)
 pl.fill_between(axp, ayp - asig, ayp + asig, color='green', alpha=0.25)
 pl.plot(attdata["Mash_temperature_C"], attdata["Attenuation_"], "ro")
-pl.xlim(55,90)
+pl.xlim(55,78)
 pl.xlabel(r"Temperature [$^{\circ}\mathrm{C}$]")
 pl.ylabel("Attenuation [%]")
 pl.grid()
