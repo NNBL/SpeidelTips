@@ -31,11 +31,10 @@ def weight_vs_efficiency_figure(subplot):
     subplot.set_title("Measured efficiency", fontsize=16)
     subplot.plot(wxp, wyp, 'k')
     subplot.fill_between(wxp, wyp - wsig, wyp + wsig, color='green', alpha=0.25)
-    i=0
-    for x,y in zip(wx,wy):
-        pl.plot(x,y,marker="o", markersize=8,label=weightdata["Remarks"][i], alpha=0.75)
-        i = i + 1 
-     
+    colors = make_colors(len(wx))
+
+    for x,y,color,label in zip(wx,wy,colors,weightdata["Remarks"]):
+        pl.scatter(x,y, s=60, color=color, edgecolors="black", label=label, alpha=0.75)
 
     subplot.set_xlim(3000,8500)
     subplot.set_ylim(60,100)
@@ -76,7 +75,8 @@ def mashtemp_vs_attenuation_figure(subplot):
     
     for yeast,color in zip(yeasttypes,colors):
             brews = data[data["Yeast type"].str.contains(yeast)]
-            pl.scatter(brews["Mash temperature [C]"], brews["Attenuation [%]"], 60, color=color, edgecolors="black", label=yeast, alpha=0.75)
+            print yeast, len(brews)
+            pl.scatter(brews["Mash temperature [C]"], brews["Attenuation [%]"], s=60, color=color, edgecolors="black", label=yeast, alpha=0.75)
     #End
     
     
