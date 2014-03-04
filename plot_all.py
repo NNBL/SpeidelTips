@@ -2,6 +2,7 @@ import matplotlib.pyplot as pl
 import numpy as np
 import pandas
 import matplotlib.cm as cm
+from matplotlib.ticker import MultipleLocator,FormatStrFormatter
 
 from matplotlib import rcParams
 rcParams.update({'figure.autolayout': True})
@@ -36,8 +37,14 @@ def weight_vs_efficiency_figure(subplot):
         i = i + 1 
      
 
-    subplot.set_xlim(2500,8500)
+    subplot.set_xlim(3000,8500)
     subplot.set_ylim(60,100)
+    majorLocator   = MultipleLocator(500)
+    majorFormatter = FormatStrFormatter('%d')
+    minorLocator  = MultipleLocator(100)
+    subplot.xaxis.set_major_locator(majorLocator)
+    subplot.xaxis.set_major_formatter(majorFormatter)
+    subplot.xaxis.set_minor_locator(minorLocator)
     subplot.set_xlabel("Grain weight [g]")
     subplot.set_ylabel("Efficiency [%]")
     subplot.grid()
@@ -77,6 +84,12 @@ def mashtemp_vs_attenuation_figure(subplot):
     subplot.set_ylim(50,90)
     subplot.set_xlabel(r"Temperature [$^{\circ}\mathrm{C}$]")
     subplot.set_ylabel("Attenuation [%]")
+    majorLocator   = MultipleLocator(1)
+    majorFormatter = FormatStrFormatter('%d')
+    minorLocator  = MultipleLocator(0.5)
+    subplot.xaxis.set_major_locator(majorLocator)
+    subplot.xaxis.set_major_formatter(majorFormatter)
+    subplot.xaxis.set_minor_locator(minorLocator)
     subplot.grid()
     subplot.legend(prop={'size':8}, shadow=True)
 
