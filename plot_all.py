@@ -1,13 +1,16 @@
+"""docstring"""
 import matplotlib.pyplot as pl
 import numpy as np
 import pandas
 import matplotlib.cm as cm
-from matplotlib.ticker import MultipleLocator,FormatStrFormatter
+from matplotlib.ticker import MultipleLocator, FormatStrFormatter
 
 from matplotlib import rcParams
 rcParams.update({'figure.autolayout': True})
 
+
 def make_colors(items):
+    """returns colors in range items"""
     x = np.arange(items)
     ys = [i+x+(i*x)**2 for i in range(items)]
 
@@ -15,16 +18,17 @@ def make_colors(items):
 
 
 def weight_vs_efficiency_figure(subplot):
+    """subplot for weight vs efficiency"""
     weightdata = np.genfromtxt("weight_vs_efficiency.csv", delimiter=",", names=True, dtype=None)
-    
+
     wx = weightdata["Grainweight_g"]
     wy = weightdata["Efficiency_"]
-    
+
     #fit 2nd order polynomial
     wparams = np.polyfit(wx, wy, 2)
     wxp = np.linspace(8500, 2500, 100)
     wyp = np.polyval(wparams, wxp)
-    
+
     #error band
     wsig = np.std(wy - np.polyval(wparams, wx))
 
@@ -33,65 +37,63 @@ def weight_vs_efficiency_figure(subplot):
     subplot.fill_between(wxp, wyp - wsig, wyp + wsig, color='green', alpha=0.25)
     colors = make_colors(len(wx))
 
-    for x,y,color,label in zip(wx,wy,colors,weightdata["Remarks"]):
-        pl.scatter(x,y, s=60, color=color, edgecolors="black", label=label, alpha=0.75)
+    for x, y, color, label in zip(wx, wy, colors, weightdata["Remarks"]):
+        pl.scatter(x, y, s=60, color=color, edgecolors="black", label=label, alpha=0.75)
 
-    subplot.set_xlim(3000,8500)
-    subplot.set_ylim(60,100)
-    majorLocator   = MultipleLocator(500)
-    majorFormatter = FormatStrFormatter('%d')
-    minorLocator  = MultipleLocator(100)
-    subplot.xaxis.set_major_locator(majorLocator)
-    subplot.xaxis.set_major_formatter(majorFormatter)
-    subplot.xaxis.set_minor_locator(minorLocator)
+    subplot.set_xlim(3000, 8500)
+    subplot.set_ylim(60, 100)
+    majorlocator = MultipleLocator(500)
+    majorformatter = FormatStrFormatter('%d')
+    minorlocator = MultipleLocator(100)
+    subplot.xaxis.set_major_locator(majorlocator)
+    subplot.xaxis.set_major_formatter(majorformatter)
+    subplot.xaxis.set_minor_locator(minorlocator)
     subplot.set_xlabel("Grain weight [g]")
     subplot.set_ylabel("Efficiency [%]")
     subplot.grid()
-    subplot.legend(prop={'size':8,}, shadow=True)
+    subplot.legend(prop={'size': 8}, shadow=True)
+
 
 def mashtemp_vs_attenuation_figure(subplot):
+    """subplot for mashtemp vs attenuation"""
     #Experimental and ugly
     data = pandas.read_csv("mash_temp_vs_attenuation.csv", delimiter=",", dtype=None)
     yeasttypes = set(data["Yeast type"])
     # End
     ax = data["Mash temperature [C]"]
-    ay =  data["Attenuation [%]"]
-    
-    
+    ay = data["Attenuation [%]"]
+
     #fit 2nd order polynomial
     aparams = np.polyfit(ax, ay, 2)
     axp = np.linspace(70, 60, 100)
     ayp = np.polyval(aparams, axp)
-    
+
     #error band
     asig = np.std(ay - np.polyval(aparams, ax))
     subplot.set_title("Mash temp vs yeast attenuation", fontsize=16)
     subplot.plot(axp, ayp, 'k')
     subplot.fill_between(axp, ayp - asig, ayp + asig, color='green', alpha=0.25)
-    
+
     #Experimental and ugly
-    
     colors = make_colors(len(yeasttypes))
-    
-    for yeast,color in zip(yeasttypes,colors):
-            brews = data[data["Yeast type"].str.contains(yeast)]
-            print yeast, len(brews)
-            pl.scatter(brews["Mash temperature [C]"], brews["Attenuation [%]"], s=60, color=color, edgecolors="black", label=yeast, alpha=0.75)
+    for yeast, color in zip(yeasttypes, colors):
+        brews = data[data["Yeast type"].str.contains(yeast)]
+        print yeast, len(brews)
+        pl.scatter(brews["Mash temperature [C]"], brews["Attenuation [%]"], s=60, color=color, edgecolors="black", label=yeast, alpha=0.75)
     #End
-    
-    
-    subplot.set_xlim(60,70)
-    subplot.set_ylim(50,90)
+
+    subplot.set_xlim(60, 70)
+    subplot.set_ylim(50, 90)
     subplot.set_xlabel(r"Temperature [$^{\circ}\mathrm{C}$]")
     subplot.set_ylabel("Attenuation [%]")
-    majorLocator   = MultipleLocator(1)
-    majorFormatter = FormatStrFormatter('%d')
-    minorLocator  = MultipleLocator(0.5)
-    subplot.xaxis.set_major_locator(majorLocator)
-    subplot.xaxis.set_major_formatter(majorFormatter)
-    subplot.xaxis.set_minor_locator(minorLocator)
+    majorlocator = MultipleLocator(1)
+    majorformatter = FormatStrFormatter('%d')
+    minorlocator = MultipleLocator(0.5)
+    subplot.xaxis.set_major_locator(majorlocator)
+    subplot.xaxis.set_major_formatter(majorformatter)
+    subplot.xaxis.set_minor_locator(minorlocator)
     subplot.grid()
-    subplot.legend(prop={'size':8}, shadow=True)
+    subplot.legend(prop={'size': 8}, shadow=True)
 
 p = pl.figure()
 p1 = p.add_subplot(211)
