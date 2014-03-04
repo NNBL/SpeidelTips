@@ -21,7 +21,7 @@ def weight_vs_efficiency_figure(subplot):
     
     #fit 2nd order polynomial
     wparams = np.polyfit(wx, wy, 2)
-    wxp = np.linspace(7000, 2500, 100)
+    wxp = np.linspace(8500, 2500, 100)
     wyp = np.polyval(wparams, wxp)
     
     #error band
@@ -30,12 +30,18 @@ def weight_vs_efficiency_figure(subplot):
     subplot.set_title("Measured efficiency", fontsize=16)
     subplot.plot(wxp, wyp, 'k')
     subplot.fill_between(wxp, wyp - wsig, wyp + wsig, color='green', alpha=0.25)
-    subplot.plot(weightdata["Grainweight_g"], weightdata["Efficiency_"], "ro")
-    subplot.set_xlim(2500,7000)
+    i=0
+    for x,y in zip(wx,wy):
+        pl.plot(x,y,marker="o", markersize=8,label=weightdata["Remarks"][i], alpha=0.75)
+        i = i + 1 
+     
+
+    subplot.set_xlim(2500,8500)
     subplot.set_ylim(60,100)
     subplot.set_xlabel("Grain weight [g]")
     subplot.set_ylabel("Efficiency [%]")
     subplot.grid()
+    subplot.legend(prop={'size':8,}, shadow=True)
 
 def mashtemp_vs_attenuation_figure(subplot):
     ##Experimental and ugly
@@ -48,7 +54,7 @@ def mashtemp_vs_attenuation_figure(subplot):
     
     #fit 2nd order polynomial
     aparams = np.polyfit(ax, ay, 2)
-    axp = np.linspace(80, 60, 100)
+    axp = np.linspace(70, 60, 100)
     ayp = np.polyval(aparams, axp)
     
     #error band
@@ -63,16 +69,16 @@ def mashtemp_vs_attenuation_figure(subplot):
     
     for yeast,color in zip(yeasttypes,colors):
             brews = data[data["Yeast type"].str.contains(yeast)]
-            pl.scatter(brews["Mash temperature [C]"], brews["Attenuation [%]"], color=color, edgecolors="black", label=yeast)
+            pl.scatter(brews["Mash temperature [C]"], brews["Attenuation [%]"], 60, color=color, edgecolors="black", label=yeast, alpha=0.75)
     #End
     
     
-    subplot.set_xlim(60,80)
-    subplot.set_ylim(40,100)
+    subplot.set_xlim(60,70)
+    subplot.set_ylim(50,90)
     subplot.set_xlabel(r"Temperature [$^{\circ}\mathrm{C}$]")
     subplot.set_ylabel("Attenuation [%]")
     subplot.grid()
-    subplot.legend()
+    subplot.legend(prop={'size':8}, shadow=True)
 
 p = pl.figure()
 p1 = p.add_subplot(211)
