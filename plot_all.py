@@ -50,7 +50,7 @@ def weight_vs_efficiency_figure(subplot):
     subplot.xaxis.set_minor_locator(minorlocator)
     subplot.set_xlabel("Grain weight [g]")
     subplot.set_ylabel("Efficiency [%]", color="green")
-        for tl in subplot.get_yticklabels():
+    for tl in subplot.get_yticklabels():
         tl.set_color('g')
     
     sub2 = subplot.twinx()
