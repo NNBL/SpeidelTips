@@ -33,7 +33,7 @@ def weight_vs_efficiency_figure(subplot):
     wsig = np.std(wy - np.polyval(wparams, wx))
 
     subplot.set_title("Measured efficiency", fontsize=16)
-    subplot.plot(wxp, wyp, 'k')
+    subplot.plot(wxp, wyp, 'k', alpha=0.45)
     subplot.fill_between(wxp, wyp - wsig, wyp + wsig, color='green', alpha=0.25)
     colors = make_colors(len(wx))
 
@@ -71,7 +71,7 @@ def mashtemp_vs_attenuation_figure(subplot):
     #error band
     asig = np.std(ay - np.polyval(aparams, ax))
     subplot.set_title("Mash temp vs yeast attenuation", fontsize=16)
-    subplot.plot(axp, ayp, 'k')
+    subplot.plot(axp, ayp, 'k', alpha=0.45)
     subplot.fill_between(axp, ayp - asig, ayp + asig, color='green', alpha=0.25)
 
     #Experimental and ugly
