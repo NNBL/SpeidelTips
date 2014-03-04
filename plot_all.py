@@ -24,8 +24,8 @@ def weight_vs_efficiency_figure(subplot):
     wx = weightdata["Grainweight_g"]
     wy = weightdata["Efficiency_"]
 
-    #fit 2nd order polynomial
-    wparams = np.polyfit(wx, wy, 2)
+    #fit 3rd order polynomial
+    wparams = np.polyfit(wx, wy, 3)
     wxp = np.linspace(8500, 2500, 100)
     wyp = np.polyval(wparams, wxp)
 
