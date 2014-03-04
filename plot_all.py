@@ -44,10 +44,10 @@ def weight_vs_efficiency_figure(subplot):
     subplot.legend(prop={'size':8,}, shadow=True)
 
 def mashtemp_vs_attenuation_figure(subplot):
-    ##Experimental and ugly
+    #Experimental and ugly
     data = pandas.read_csv("mash_temp_vs_attenuation.csv", delimiter=",", dtype=None)
     yeasttypes = set(data["Yeast type"])
-    ## End
+    # End
     ax = data["Mash temperature [C]"]
     ay =  data["Attenuation [%]"]
     
