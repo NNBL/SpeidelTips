@@ -49,7 +49,16 @@ def weight_vs_efficiency_figure(subplot):
     subplot.xaxis.set_major_formatter(majorformatter)
     subplot.xaxis.set_minor_locator(minorlocator)
     subplot.set_xlabel("Grain weight [g]")
-    subplot.set_ylabel("Efficiency [%]")
+    subplot.set_ylabel("Efficiency [%]", color="green")
+        for tl in subplot.get_yticklabels():
+        tl.set_color('g')
+    
+    sub2 = subplot.twinx()
+    sub2.bar([3700, 4300, 5150,  5200, 6100, 6130, 6270, 6500],[40,50,60,70,60,40,35,35], 25, alpha = 0.4, align="center")
+    sub2.set_ylabel("OG", color="blue")
+    sub2.set_ylim(30, 100)
+    for tl in sub2.get_yticklabels():
+        tl.set_color('b')
     subplot.grid()
     subplot.legend(prop={'size': 8}, shadow=True)
 
