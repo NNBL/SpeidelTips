@@ -9,6 +9,7 @@ from matplotlib import rcParams
 rcParams.update({'figure.autolayout': True})
 
 
+
 def make_colors(items):
     """returns colors in range items"""
     x = np.arange(items)
@@ -17,12 +18,11 @@ def make_colors(items):
     return cm.rainbow(np.linspace(0, 1, len(ys)))
 
 
-def weight_vs_efficiency_figure(subplot):
+def weight_vs_efficiency_figure(subplot, data):
     """subplot for weight vs efficiency"""
-    weightdata = np.genfromtxt("weight_vs_efficiency.csv", delimiter=",", names=True, dtype=None)
 
-    wx = weightdata["Grainweight_g"]
-    wy = weightdata["Efficiency_"]
+    wx = data["Grainweight"]
+    wy = data["Efficiency"]
 
     #fit 3rd order polynomial
     wparams = np.polyfit(wx, wy, 3)
@@ -37,7 +37,7 @@ def weight_vs_efficiency_figure(subplot):
     subplot.fill_between(wxp, wyp - wsig, wyp + wsig, color='green', alpha=0.25)
     colors = make_colors(len(wx))
 
-    for x, y, color, label in zip(wx, wy, colors, weightdata["Remarks"]):
+    for x, y, color, label in zip(wx, wy, colors, data["Name"]):
         pl.scatter(x, y, s=60, color=color, edgecolors="black", label=label, alpha=0.75)
 
     subplot.set_xlim(3000, 8500)
@@ -63,14 +63,13 @@ def weight_vs_efficiency_figure(subplot):
     subplot.legend(prop={'size': 8}, shadow=True)
 
 
-def mashtemp_vs_attenuation_figure(subplot):
+def mashtemp_vs_attenuation_figure(subplot, data):
     """subplot for mashtemp vs attenuation"""
     #Experimental and ugly
-    data = pandas.read_csv("mash_temp_vs_attenuation.csv", delimiter=",", dtype=None)
     yeasttypes = set(data["Yeast type"])
     # End
-    ax = data["Mash temperature [C]"]
-    ay = data["Attenuation [%]"]
+    ax = data["Mash temperature"]
+    ay = data["Attenuation"]
 
     #fit 2nd order polynomial
     aparams = np.polyfit(ax, ay, 2)
@@ -88,7 +87,7 @@ def mashtemp_vs_attenuation_figure(subplot):
     for yeast, color in zip(yeasttypes, colors):
         brews = data[data["Yeast type"].str.contains(yeast)]
         print yeast, len(brews)
-        pl.scatter(brews["Mash temperature [C]"], brews["Attenuation [%]"], s=60, color=color, edgecolors="black", label=yeast, alpha=0.75)
+        pl.scatter(brews["Mash temperature"], brews["Attenuation"], s=60, color=color, edgecolors="black", label=yeast, alpha=0.75)
     #End
 
     subplot.set_xlim(60, 70)
@@ -104,10 +103,13 @@ def mashtemp_vs_attenuation_figure(subplot):
     subplot.grid()
     subplot.legend(prop={'size': 8}, shadow=True)
 
+    
+data = pandas.read_csv("nnbldata.csv", delimiter=",", dtype=None)
+
 p = pl.figure()
 p1 = p.add_subplot(211)
-weight_vs_efficiency_figure(p1)
+weight_vs_efficiency_figure(p1, data)
 p2 = p.add_subplot(212)
-mashtemp_vs_attenuation_figure(p2)
-pl.savefig("all.png")
+mashtemp_vs_attenuation_figure(p2, data)
+#pl.savefig("all.png")
 pl.show()
