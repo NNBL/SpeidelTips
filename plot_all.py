@@ -92,8 +92,8 @@ def mashtemp_vs_attenuation_figure(subplot, data):
     colors = make_colors(len(yeasttypes))
     for yeast, color in zip(yeasttypes, colors):
         brews = data[data["Yeast type"].str.contains(yeast)]
-        print yeast, len(brews)
-        pl.scatter(brews["Mash temperature"], brews["Attenuation"], s=60, color=color, edgecolors="black", label=yeast, alpha=0.75)
+        label = yeast+" ("+str(len(brews))+")"
+        pl.scatter(brews["Mash temperature"], brews["Attenuation"], s=60, color=color, edgecolors="black", label=label, alpha=0.75)
     #End
 
     subplot.set_xlim(60, 70)
