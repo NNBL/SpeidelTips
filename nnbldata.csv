@@ -2,8 +2,8 @@ Name,Grainweight,Efficiency,OG,Mash temperature,Attenuation,Yeast type,Remarks
 Grande Mexican Lager,6270,77,NaN,65,79,WLP830,None
 77 Porter,6500,75,NaN,67,69,M44,None
 Vommolbrygg,6100,80,NaN,67,70,WLP833,None
-Andrimne Dry Stout,3700,90,NaN,NaN,NaN,NaN,NaN
-Irish Red Fale,5150,84,NaN,65,NaN,M10,NaN
+Andrimne Dry Stout,3700,90,NaN,69,65,WLP001,NaN
+Irish Red Fale,5150,84,NaN,65,50,M10,NaN
 BlackHops mk2,6130,66,NaN,65,76,Nottingham,None  
 Andrimne Christmas Ale,5200,74,NaN,65,74,WLP002,None
 Guttetur Pale Ale,4300,78,NaN,65,77,WLP001,None
