@@ -20,10 +20,10 @@ def make_colors(items):
 
 def weight_vs_efficiency_figure(subplot, data):
     """subplot for weight vs efficiency"""
-    weightdata = np.genfromtxt("weight_vs_efficiency.csv", delimiter=",", names=True, dtype=None)
+    #weightdata = np.genfromtxt("weight_vs_efficiency.csv", delimiter=",", names=True, dtype=None)
 
-    wx = weightdata["Grainweight_g"]
-    wy = weightdata["Efficiency_"]
+    wx = data["Grainweight"]
+    wy = data["Efficiency"]
 
     #fit 3rd order polynomial
     wparams = np.polyfit(wx, wy, 3)
@@ -38,7 +38,7 @@ def weight_vs_efficiency_figure(subplot, data):
     subplot.fill_between(wxp, wyp - wsig, wyp + wsig, color='green', alpha=0.25)
     colors = make_colors(len(wx))
 
-    for x, y, color, label in zip(wx, wy, colors, weightdata["Remarks"]):
+    for x, y, color, label in zip(wx, wy, colors, data["Name"]):
         pl.scatter(x, y, s=60, color=color, edgecolors="black", label=label, alpha=0.75)
 
     subplot.set_xlim(3000, 8500)
