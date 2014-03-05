@@ -15,7 +15,7 @@ def make_colors(items):
     x = np.arange(items)
     ys = [i+x+(i*x)**2 for i in range(items)]
 
-    return cm.rainbow(np.linspace(0, 1, len(ys)))
+    return cm.gist_ncar(np.linspace(0, 1, len(ys)))
 
 
 def weight_vs_efficiency_figure(subplot, data):
