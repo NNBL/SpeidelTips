@@ -17,6 +17,21 @@ def make_colors(items):
 
     return cm.gist_ncar(np.linspace(0, 1, len(ys)))
 
+def weight_vs_og_figure(subplot, data):
+    subplot.set_title("Original gravity", fontsize=16)
+    subplot.bar([3700, 4300, 5150,  5200, 6100, 6130, 6270, 6500],[40,50,60,70,60,40,35,35], 25, alpha = 0.4, align="center")
+    subplot.set_ylabel("OG")
+    subplot.set_ylim(30, 100)
+    subplot.set_xlabel("Grain weight [g]")
+    majorlocator = MultipleLocator(1000)
+    majorformatter = FormatStrFormatter('%d')
+    minorlocator = MultipleLocator(100)
+    subplot.xaxis.set_major_locator(majorlocator)
+    subplot.xaxis.set_major_formatter(majorformatter)
+    subplot.xaxis.set_minor_locator(minorlocator)
+    subplot.yaxis.tick_right()
+    subplot.yaxis.set_label_position("right")
+    subplot.grid()
 
 def weight_vs_efficiency_figure(subplot, data):
     """subplot for weight vs efficiency"""
@@ -42,25 +57,16 @@ def weight_vs_efficiency_figure(subplot, data):
 
     subplot.set_xlim(3000, 8500)
     subplot.set_ylim(60, 100)
-    majorlocator = MultipleLocator(500)
+    majorlocator = MultipleLocator(1000)
     majorformatter = FormatStrFormatter('%d')
     minorlocator = MultipleLocator(100)
     subplot.xaxis.set_major_locator(majorlocator)
     subplot.xaxis.set_major_formatter(majorformatter)
     subplot.xaxis.set_minor_locator(minorlocator)
     subplot.set_xlabel("Grain weight [g]")
-    subplot.set_ylabel("Efficiency [%]", color="green")
-    for tl in subplot.get_yticklabels():
-        tl.set_color('g')
-    
-    sub2 = subplot.twinx()
-    sub2.bar([3700, 4300, 5150,  5200, 6100, 6130, 6270, 6500],[40,50,60,70,60,40,35,35], 25, alpha = 0.4, align="center")
-    sub2.set_ylabel("OG", color="blue")
-    sub2.set_ylim(30, 100)
-    for tl in sub2.get_yticklabels():
-        tl.set_color('b')
+    subplot.set_ylabel("Efficiency [%]")
     subplot.grid()
-    subplot.legend(prop={'size': 8}, shadow=True)
+    subplot.legend(prop={'size': 6}, shadow=True)
 
 
 def mashtemp_vs_attenuation_figure(subplot, data):
@@ -101,15 +107,16 @@ def mashtemp_vs_attenuation_figure(subplot, data):
     subplot.xaxis.set_major_formatter(majorformatter)
     subplot.xaxis.set_minor_locator(minorlocator)
     subplot.grid()
-    subplot.legend(prop={'size': 8}, shadow=True)
+    subplot.legend(prop={'size': 7}, shadow=True)
 
     
 data = pandas.read_csv("nnbldata.csv", delimiter=",", dtype=None)
 
-p = pl.figure()
-p1 = p.add_subplot(211)
+p1 = pl.subplot2grid((2,3), (0,0), colspan=2)
 weight_vs_efficiency_figure(p1, data)
-p2 = p.add_subplot(212)
-mashtemp_vs_attenuation_figure(p2, data)
+p2 = pl.subplot2grid((2,3), (0,2))
+weight_vs_og_figure(p2, data)
+p3 = pl.subplot2grid((2,3), (1,0), colspan=3)
+mashtemp_vs_attenuation_figure(p3, data)
 #pl.savefig("all.png")
 pl.show()
