@@ -40,7 +40,7 @@ def weight_vs_efficiency_figure(subplot, data):
     wy = data["Efficiency"]
 
     #fit 3rd order polynomial
-    wparams = np.polyfit(wx, wy, 3)
+    wparams = np.polyfit(wx, wy, 2)
     wxp = np.linspace(8500, 2500, 100)
     wyp = np.polyval(wparams, wxp)
 
