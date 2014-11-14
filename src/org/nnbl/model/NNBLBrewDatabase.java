@@ -48,7 +48,8 @@ public class NNBLBrewDatabase {
 			if (brew.getMashTemp() >= (temperature - 0.5)
 					&& brew.getMashTemp() <= (temperature + 0.5)
 					&& brew.getAttenuation() >= (attenuation - 0.4)
-					&& brew.getAttenuation() <= (attenuation + 0.4)) {
+					&& brew.getAttenuation() <= (attenuation + 0.4)
+					&& brew.getGrainweight() > 0) {
 				nearest += brew.getYeastType() + " in " + brew.getBrewName() + ", ";
 			}
 		}
