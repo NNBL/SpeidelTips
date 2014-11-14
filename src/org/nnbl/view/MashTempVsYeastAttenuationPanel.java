@@ -19,6 +19,7 @@ import javax.swing.JSplitPane;
 
 import org.nnbl.model.NNBLBrew;
 import org.nnbl.model.NNBLBrewDatabase;
+import org.nnbl.model.YeastTypes;
 import org.nnbl.utils.math.PolyTrendLine;
 import org.nnbl.utils.math.TrendLine;
 
@@ -35,10 +36,12 @@ public class MashTempVsYeastAttenuationPanel extends JPanel implements
 
 	private int borderSize = 0;
 	private TrendLine t = new PolyTrendLine(2);
+	private YeastTypes yt;
 
 	public MashTempVsYeastAttenuationPanel(NNBLBrewDatabase db, NNBLApp nnblApp) {
 		this.db = db;
 		this.nnblApp = nnblApp;
+		yt = new YeastTypes();
 		setBackground(Color.WHITE);
 		setMinimumSize(new Dimension(250, 150));
 		this.addMouseListener(this);
@@ -105,7 +108,7 @@ public class MashTempVsYeastAttenuationPanel extends JPanel implements
 			int y = (int) (getHeight() - ((brew.getAttenuation() - minAttenuation)
 					/ (maxAttenuation - minAttenuation) * getHeight()));
 
-			g2d.setColor(brew.getColor());
+			g2d.setColor(yt.getColorForYeastType(brew.getYeastType()));
 			g2d.fillOval(x - 5, y - 5, 10, 10);
 			g2d.setColor(Color.BLACK);
 			g2d.drawOval(x - 5, y - 5, 10, 10);
