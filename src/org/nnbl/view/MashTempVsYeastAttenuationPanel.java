@@ -180,7 +180,12 @@ public class MashTempVsYeastAttenuationPanel extends JPanel implements
 		float x = xfactor * (maxTemperature - minTemperature) + minTemperature;
 		float y = maxAttenuation
 				- (yfactor * (maxAttenuation - minAttenuation));
-		nnblApp.setStatusText(db.findNearestMashTemp(x, y));
+		String statusText = db.findNearestMashTemp(x, y);
+		if (statusText.equals("")) {
+			nnblApp.setStatusText(" ");			
+		} else {
+			nnblApp.setStatusText(statusText);
+		}
 	}
 
 	@Override
