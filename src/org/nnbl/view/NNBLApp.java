@@ -18,7 +18,7 @@ public class NNBLApp extends JFrame {
 	}
 
 	public NNBLApp(NNBLBrewDatabase db) {
-		setTitle("NNBL Data viewer \u03B21");
+		setTitle("NNBL Data viewer 1.1\u03B2");
 		MeasuredEfficiencyPanel mep = new MeasuredEfficiencyPanel(db, this);
 		NameLegendPanel nlp = new NameLegendPanel(db);
 		MashTempVsYeastAttenuationPanel map = new MashTempVsYeastAttenuationPanel(
