@@ -1,7 +1,5 @@
 SpeidelTips
 ===========
 
-Useful tips and hints for using the 20L Speidel Braumeister
+Tool to help designing a brew on NNBL`s braumeister
 ![ScreenShot](all.png)
-
-python, matplotlib, pandas and numpy needed for scripts
