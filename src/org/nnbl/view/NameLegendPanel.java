@@ -35,12 +35,14 @@ public class NameLegendPanel extends JPanel {
 		if (db.size() > 0) {
 			int i = 0;
 			for (NNBLBrew brew : db.getBrews()) {
-				g2d.setColor(brew.getColor());
-				g2d.fillOval(5, 5 + 15*i, 10, 10);
-				g2d.setColor(Color.BLACK);
-				g2d.drawString(brew.getBrewName(), 25, 15 + 15*i);
-				g2d.drawOval(5, 5 + 15*i, 10, 10);			
-				i++;
+				if (brew.getGrainweight() > 0) {
+					g2d.setColor(brew.getColor());
+					g2d.fillOval(5, 5 + 15*i, 10, 10);
+					g2d.setColor(Color.BLACK);
+					g2d.drawString(brew.getBrewName(), 25, 15 + 15*i);
+					g2d.drawOval(5, 5 + 15*i, 10, 10);			
+					i++;					
+				}
 			}			
 		}
 	}
