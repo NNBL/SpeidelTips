@@ -19,26 +19,26 @@ public class NNBLBrew {
 	public NNBLBrew(String[] values) {
 		this.brewer = values[0];
 		this.brewName = values[1];
-		this.grainweight = Integer.parseInt(values[2]);
-		this.efficiency = Double.parseDouble(values[3]);
+		this.grainweight = Integer.parseInt(values[2].trim());
+		this.efficiency = Double.parseDouble(values[3].trim());
 		
 		if (values[4].equals("NaN")) {
 			this.originalGravity = -1;
 		} else {
-			this.originalGravity = Integer.parseInt(values[4]);
+			this.originalGravity = Integer.parseInt(values[4].trim());
 		}
 
 		if (values[4].equals("NaN")) {
 			this.finalGravity = -1;
 			
 		} else {
-			this.finalGravity = Integer.parseInt(values[5]);
+			this.finalGravity = Integer.parseInt(values[5].trim());
 		}
 		
-		this.mashTemp = Double.parseDouble(values[6]);
-		this.attenuation = Double.parseDouble(values[7]);
-		this.yeastType = values[8];
-		this.remarks = values[9];
+		this.mashTemp = Double.parseDouble(values[6].trim());
+		this.attenuation = Double.parseDouble(values[7].trim());
+		this.yeastType = values[8].trim();
+		this.remarks = values[9].trim();
 		Random r = new Random();
 		
 		
