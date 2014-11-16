@@ -44,7 +44,7 @@ public class YeastLegendPanel extends JPanel {
 					g2d.setColor(yt.getColorForYeastType(yeast));
 					g2d.fillOval(5, 5 + 15*i, 10, 10);
 					g2d.setColor(Color.BLACK);
-					g2d.drawString(brew.getYeastType(), 25, 15 + 15*i);
+					g2d.drawString(yeast + " ("+db.findNumberOfBrewsWithYeastType(yeast)+")", 25, 15 + 15*i);
 					g2d.drawOval(5, 5 + 15*i, 10, 10);
 					drawnItems.add(yeast);
 					i++;					
