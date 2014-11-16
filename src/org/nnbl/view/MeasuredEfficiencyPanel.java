@@ -48,16 +48,16 @@ public class MeasuredEfficiencyPanel extends JPanel implements MouseListener {
 		drawTitle(g2d);
 		if (db.size() > 0) {
 			drawTrendLine(g2d, getXYvalues(g2d));
-			drawBrews(g2d);			
-		} else{
-			
+			drawBrews(g2d);
+		} else {
+
 		}
 	}
 
 	private void setRenderingHints(Graphics2D g2d) {
 		RenderingHints rh = new RenderingHints(RenderingHints.KEY_ANTIALIASING,
 				RenderingHints.VALUE_ANTIALIAS_ON);
-		g2d.setRenderingHints(rh);		
+		g2d.setRenderingHints(rh);
 	}
 
 	private void drawBrews(Graphics2D g2d) {
@@ -73,7 +73,7 @@ public class MeasuredEfficiencyPanel extends JPanel implements MouseListener {
 			g2d.fillOval(x - 5, y - 5, 10, 10);
 			g2d.setColor(Color.BLACK);
 			g2d.drawOval(x - 5, y - 5, 10, 10);
-		}		
+		}
 	}
 
 	private double[] getXYvalues(Graphics2D g2d) {
@@ -106,19 +106,19 @@ public class MeasuredEfficiencyPanel extends JPanel implements MouseListener {
 		Rectangle2D rect = fm.getStringBounds(title, g2d);
 		g2d.drawString(title, (int) (getWidth() / 2 - rect.getWidth() / 2),
 				(int) (10 + rect.getHeight() / 2));
-		
+
 	}
 
 	private void drawTrendLine(Graphics2D g2d, double[] tlx) {
-		
+
 		int width = getWidth();
-		
+
 		int[] xpoints = new int[width];
 		int[] ypoints = new int[width];
-		
+
 		for (int x = 0; x < width; x++) {
 			xpoints[x] = x;
-			ypoints[x] = (int) t.predict(x);			
+			ypoints[x] = (int) t.predict(x);
 		}
 		// Draw "Error band"
 		g2d.setStroke(new BasicStroke(50));
@@ -134,7 +134,7 @@ public class MeasuredEfficiencyPanel extends JPanel implements MouseListener {
 		g2d.setColor(Color.BLACK);
 
 		g2d.setColor(new Color(0.73f, 0.73f, 0.73f, 1f));
-		float dash1[] = { 3.0f,5.0f };
+		float dash1[] = { 3.0f, 5.0f };
 		g2d.setStroke(new BasicStroke(1.0f, BasicStroke.CAP_BUTT,
 				BasicStroke.JOIN_MITER, 10.0f, dash1, 0.0f));
 
@@ -160,7 +160,8 @@ public class MeasuredEfficiencyPanel extends JPanel implements MouseListener {
 			int x1 = i * (getWidth() / xstrokes);
 			int y1 = getHeight();
 			g2d.drawLine(x0, y0, x1, y1);
-			g2d.drawString((((minWeight + i * 500f)/1000)) + "Kg", x1+2, y1-4);
+			g2d.drawString((((minWeight + i * 500f) / 1000)) + "Kg", x1 + 2,
+					y1 - 4);
 		}
 
 	}
@@ -173,10 +174,13 @@ public class MeasuredEfficiencyPanel extends JPanel implements MouseListener {
 
 		float x = xfactor * (maxWeight - minWeight) + minWeight;
 		float y = maxEfficiency - (yfactor * (maxEfficiency - minEfficiency));
+		String statusText = db.findNearestEfficiency(x, y);
 
-		nnblApp.setStatusText(db.findNearestEfficiency(x, y));
-		// System.out.format("%.0fg : %.1f%% %s %n", x, y,
-		// db.findNearestEfficiency(x, y));
+		if (statusText.equals("")) {
+			nnblApp.setStatusText(" ");
+		} else {
+			nnblApp.setStatusText(statusText);
+		}
 	}
 
 	@Override

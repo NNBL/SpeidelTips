@@ -30,10 +30,11 @@ public class YeastLegendPanel extends JPanel {
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2d = (Graphics2D) g.create();
-		
-		RenderingHints rh = new RenderingHints(RenderingHints.KEY_ANTIALIASING,
-				RenderingHints.VALUE_ANTIALIAS_ON);
-		g2d.setRenderingHints(rh);
+		setRenderHints(g2d);
+		drawYeastNames(g2d);
+	}
+
+	private void drawYeastNames(Graphics2D g2d) {
 		ArrayList<String> drawnItems = new ArrayList<String>();
 		if (db.size() > 0) {
 			int i = 0;
@@ -43,12 +44,18 @@ public class YeastLegendPanel extends JPanel {
 					g2d.setColor(yt.getColorForYeastType(yeast));
 					g2d.fillOval(5, 5 + 15*i, 10, 10);
 					g2d.setColor(Color.BLACK);
-					g2d.drawString(yeast + " ("+db.findNumberOfBrewsWithYeastType(yeast)+")", 25, 15 + 15*i);
+					g2d.drawString(yeast + " ("+db.getNumberOfBrewsWithYeastType(yeast)+")", 25, 15 + 15*i);
 					g2d.drawOval(5, 5 + 15*i, 10, 10);
 					drawnItems.add(yeast);
 					i++;					
 				}
 			}			
-		}
+		}		
+	}
+
+	private void setRenderHints(Graphics2D g2d) {
+		RenderingHints rh = new RenderingHints(RenderingHints.KEY_ANTIALIASING,
+				RenderingHints.VALUE_ANTIALIAS_ON);
+		g2d.setRenderingHints(rh);		
 	}
 }

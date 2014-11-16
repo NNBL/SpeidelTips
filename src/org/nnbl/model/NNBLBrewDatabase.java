@@ -29,15 +29,18 @@ public class NNBLBrewDatabase {
 	}
 
 	public String findNearestEfficiency(float grainweight, float efficiency) {
+		
+		String nearest = "";
+		
 		for (NNBLBrew brew : db) {
 			if (brew.getGrainweight() >= (grainweight - 50)
 					&& brew.getGrainweight() <= (grainweight + 50)
 					&& brew.getEfficiency() >= (efficiency - 0.4)
 					&& brew.getEfficiency() <= (efficiency + 0.4)) {
-				return brew.getBrewName() + " by " + brew.getBrewer();
+				nearest += brew.getBrewName() + " by " + brew.getBrewer() + ", ";
 			}
 		}
-		return " ";
+		return nearest;
 	}
 
 	public String findNearestMashTemp(float temperature, float attenuation) {
@@ -57,15 +60,13 @@ public class NNBLBrewDatabase {
 		return nearest;
 	}
 
-	public int findNumberOfBrewsWithYeastType(String type) {
+	public int getNumberOfBrewsWithYeastType(String type) {
 		int number = 0;
 		for (NNBLBrew brew : db) {
 			if (brew.getYeastType().equals(type)) {
 				number++;
 			}
-
 		}
-
 		return number;
 	}
 
