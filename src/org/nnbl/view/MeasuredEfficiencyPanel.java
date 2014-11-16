@@ -163,7 +163,7 @@ public class MeasuredEfficiencyPanel extends JPanel implements MouseListener {
 			int x1 = i * (getWidth() / xstrokes);
 			int y1 = getHeight();
 			g2d.drawLine(x0, y0, x1, y1);
-			g2d.drawString(((int)(minWeight + i * 500)) + "g", x1+2, y1-4);
+			g2d.drawString((((minWeight + i * 500f)/1000)) + "Kg", x1+2, y1-4);
 		}
 
 	}
