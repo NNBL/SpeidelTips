@@ -6,7 +6,6 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import org.nnbl.model.NNBLBrew;
@@ -45,19 +44,5 @@ public class NameLegendPanel extends JPanel {
 				}
 			}			
 		}
-	}
-	
-	public static void main(String[] args) {
-		NNBLBrewDatabase brewbase = new NNBLBrewDatabase();
-		brewbase.loadBrewsFromFile("./src/nnbldata.csv");
-		System.out.println(brewbase.size() + " brews loaded from file");
-
-		NameLegendPanel nlp = new NameLegendPanel(brewbase);
-		
-		JFrame frame = new JFrame("Testing MeasuredEfficiency Panel");
-		frame.add(nlp);
-		frame.setMinimumSize(nlp.getMinimumSize());
-		frame.setSize(500, 500);
-		frame.setVisible(true);
-	}
+	}	
 }

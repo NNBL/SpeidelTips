@@ -96,10 +96,4 @@ public class NNBLBrewDatabase {
 		}
 
 	}
-
-	public static void main(String[] args) throws IOException {
-		NNBLBrewDatabase brewbase = new NNBLBrewDatabase();
-		brewbase.loadBrewsFromFile("./src/nnbldata.csv");
-		System.out.println(brewbase.size() + " brews loaded from file");
-	}
 }

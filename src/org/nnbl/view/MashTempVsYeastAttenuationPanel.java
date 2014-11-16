@@ -1,7 +1,6 @@
 package org.nnbl.view;
 
 import java.awt.BasicStroke;
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -13,9 +12,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.geom.Rectangle2D;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JSplitPane;
 
 import org.nnbl.model.NNBLBrew;
 import org.nnbl.model.NNBLBrewDatabase;
@@ -209,26 +206,4 @@ public class MashTempVsYeastAttenuationPanel extends JPanel implements
 		// TODO Auto-generated method stub
 
 	}
-
-	public static void main(String[] args) {
-		NNBLBrewDatabase brewbase = new NNBLBrewDatabase();
-		brewbase.loadBrewsFromFile("./src/nnbldata.csv");
-		System.out.println(brewbase.size() + " brews loaded from file");
-
-		MashTempVsYeastAttenuationPanel mp = new MashTempVsYeastAttenuationPanel(
-				brewbase, null);
-		YeastLegendPanel nlp = new YeastLegendPanel(brewbase);
-
-		JSplitPane splitpane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, mp,
-				nlp);
-		splitpane.setResizeWeight(1);
-		JFrame frame = new JFrame("Testing MeasuredEfficiency Panel");
-		frame.setLayout(new BorderLayout());
-		frame.add(splitpane, BorderLayout.CENTER);
-		frame.setMinimumSize(mp.getMinimumSize());
-		frame.setSize(500, 500);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setVisible(true);
-	}
-
 }
