@@ -41,23 +41,34 @@ public class NNBLBrewDatabase {
 	}
 
 	public String findNearestMashTemp(float temperature, float attenuation) {
-		
+
 		String nearest = "";
-		
+
 		for (NNBLBrew brew : db) {
 			if (brew.getMashTemp() >= (temperature - 0.5)
 					&& brew.getMashTemp() <= (temperature + 0.5)
 					&& brew.getAttenuation() >= (attenuation - 0.4)
 					&& brew.getAttenuation() <= (attenuation + 0.4)
-					&& brew.getGrainweight() > 0) {
-				nearest += brew.getYeastType() + " in " + brew.getBrewName() + ", ";
+					) {
+				nearest += brew.getYeastType() + " in " + brew.getBrewName()
+						+ ", ";
 			}
 		}
 		return nearest;
 	}
-	
-	
-	
+
+	public int findNumberOfBrewsWithYeastType(String type) {
+		int number = 0;
+		for (NNBLBrew brew : db) {
+			if (brew.getYeastType().equals(type)) {
+				number++;
+			}
+
+		}
+
+		return number;
+	}
+
 	public void loadBrewsFromFile(String pathname) {
 		db.clear();
 		try {
