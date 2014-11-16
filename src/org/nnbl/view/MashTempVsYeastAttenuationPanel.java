@@ -184,7 +184,11 @@ public class MashTempVsYeastAttenuationPanel extends JPanel implements
 			nnblApp.setStatusText(statusText);
 		}
 	}
-
+    @Override
+    public Dimension getPreferredSize() {
+        return new Dimension(300, 300);
+    }
+    
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub

@@ -182,6 +182,10 @@ public class MeasuredEfficiencyPanel extends JPanel implements MouseListener {
 			nnblApp.setStatusText(statusText);
 		}
 	}
+    @Override
+    public Dimension getPreferredSize() {
+        return new Dimension(200, 200);
+    }
 
 	@Override
 	public void mousePressed(MouseEvent e) {

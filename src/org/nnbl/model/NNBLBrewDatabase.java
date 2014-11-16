@@ -60,10 +60,10 @@ public class NNBLBrewDatabase {
 		return nearest;
 	}
 
-	public int getNumberOfBrewsWithYeastType(String type) {
+	public int getNumberOfBrewsWith(String yeastType) {
 		int number = 0;
 		for (NNBLBrew brew : db) {
-			if (brew.getYeastType().equals(type)) {
+			if (brew.getYeastType().equals(yeastType)) {
 				number++;
 			}
 		}

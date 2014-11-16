@@ -14,35 +14,43 @@ import org.nnbl.model.NNBLBrewDatabase;
 public class NameLegendPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private NNBLBrewDatabase db;
-	
+
 	public NameLegendPanel(NNBLBrewDatabase db) {
 		this.db = db;
 		setBackground(Color.WHITE);
-		setMinimumSize(new Dimension(200, 400));
-		setSize(200, 400);
 	}
-	
+
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2d = (Graphics2D) g.create();
-		
-		RenderingHints rh = new RenderingHints(RenderingHints.KEY_ANTIALIASING,
-				RenderingHints.VALUE_ANTIALIAS_ON);
-		g2d.setRenderingHints(rh);
-		
+		setRenderingHints(g2d);
+		drawBeerNames(g2d);
+	}
+
+	private void drawBeerNames(Graphics2D g2d) {
 		if (db.size() > 0) {
 			int i = 0;
 			for (NNBLBrew brew : db.getBrews()) {
 				if (brew.getGrainweight() > 0) {
 					g2d.setColor(brew.getColor());
-					g2d.fillOval(5, 5 + 15*i, 10, 10);
+					g2d.fillOval(5, 5 + 15 * i, 10, 10);
 					g2d.setColor(Color.BLACK);
-					g2d.drawString(brew.getBrewName(), 25, 15 + 15*i);
-					g2d.drawOval(5, 5 + 15*i, 10, 10);			
-					i++;					
+					g2d.drawString(brew.getBrewName(), 25, 15 + 15 * i);
+					g2d.drawOval(5, 5 + 15 * i, 10, 10);
+					i++;
 				}
-			}			
+			}
 		}
-	}	
+	}
+	
+	private void setRenderingHints(Graphics2D g2d) {
+		RenderingHints rh = new RenderingHints(RenderingHints.KEY_ANTIALIASING,
+				RenderingHints.VALUE_ANTIALIAS_ON);
+		g2d.setRenderingHints(rh);
+	}
+	@Override
+	public Dimension getPreferredSize() {
+		return new Dimension(200,100);
+	}
 }

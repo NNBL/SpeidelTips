@@ -17,15 +17,13 @@ public class YeastLegendPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private NNBLBrewDatabase db;
 	private YeastTypes yt;
-	
+
 	public YeastLegendPanel(NNBLBrewDatabase db) {
 		this.db = db;
 		yt = new YeastTypes();
 		setBackground(Color.WHITE);
-		setMinimumSize(new Dimension(200, 400));
-		setSize(200, 400);
 	}
-	
+
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -42,20 +40,28 @@ public class YeastLegendPanel extends JPanel {
 				String yeast = brew.getYeastType();
 				if (!drawnItems.contains(yeast)) {
 					g2d.setColor(yt.getColorForYeastType(yeast));
-					g2d.fillOval(5, 5 + 15*i, 10, 10);
+					g2d.fillOval(5, 5 + 15 * i, 10, 10);
 					g2d.setColor(Color.BLACK);
-					g2d.drawString(yeast + " ("+db.getNumberOfBrewsWithYeastType(yeast)+")", 25, 15 + 15*i);
-					g2d.drawOval(5, 5 + 15*i, 10, 10);
+					g2d.drawString(
+							yeast + " (" + db.getNumberOfBrewsWith(yeast) + ")",
+							25, 15 + 15 * i);
+					g2d.drawOval(5, 5 + 15 * i, 10, 10);
 					drawnItems.add(yeast);
-					i++;					
+					i++;
 				}
-			}			
-		}		
+			}
+		}
 	}
 
 	private void setRenderHints(Graphics2D g2d) {
 		RenderingHints rh = new RenderingHints(RenderingHints.KEY_ANTIALIASING,
 				RenderingHints.VALUE_ANTIALIAS_ON);
-		g2d.setRenderingHints(rh);		
+		g2d.setRenderingHints(rh);
 	}
+
+	@Override
+	public Dimension getPreferredSize() {
+		return new Dimension(150, 100);
+	}
+
 }

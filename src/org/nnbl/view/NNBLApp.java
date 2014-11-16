@@ -34,7 +34,6 @@ public class NNBLApp extends JFrame {
 		hsUpper.setResizeWeight(1f);
 		hsLower.setResizeWeight(1f);
 		JSplitPane vs = new JSplitPane(0, hsUpper, hsLower);
-		vs.setEnabled(false);
 		vs.setResizeWeight(0.5);
 		add(vs, BorderLayout.CENTER);
 		add(statusBar, BorderLayout.SOUTH);
