@@ -1,6 +1,7 @@
 package org.nnbl.view;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
@@ -41,6 +42,11 @@ public class NameLegendPanel extends JPanel {
 				}
 			}
 		}
+	}
+	
+	@Override
+	public Dimension getPreferredSize() {
+		return new Dimension(200, 100);
 	}
 	
 	private void setRenderingHints(Graphics2D g2d) {

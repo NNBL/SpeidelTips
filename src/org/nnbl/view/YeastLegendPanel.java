@@ -1,6 +1,7 @@
 package org.nnbl.view;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
@@ -51,7 +52,11 @@ public class YeastLegendPanel extends JPanel {
 			}
 		}
 	}
-
+	
+	@Override
+	public Dimension getPreferredSize() {
+		return new Dimension(150, 100);
+	}
 	private void setRenderHints(Graphics2D g2d) {
 		RenderingHints rh = new RenderingHints(RenderingHints.KEY_ANTIALIASING,
 				RenderingHints.VALUE_ANTIALIAS_ON);
