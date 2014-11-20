@@ -127,7 +127,7 @@ public class PlotPanel extends JPanel implements MouseListener {
 			}
 			drawValues(g2d);
 		} else {
-			System.err.println("No values to draw.");
+			System.err.println("No values to draw..");
 		}
 	}
 
