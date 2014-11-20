@@ -37,7 +37,6 @@ public class ColorSpan {
 			double g = Math.sin(frequency2 * i + phase2) * width + center;
 			double b = Math.sin(frequency3 * i + phase3) * width + center;
 			colors[i] = new Color((int) r, (int) g, (int) b);
-			System.out.println("r:" + r + ", g:" + g + ", b:" + b);
 		}
 		return colors;
 	}

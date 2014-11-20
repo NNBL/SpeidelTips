@@ -1,7 +1,6 @@
 package org.nnbl.view;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
@@ -38,7 +37,7 @@ public class YeastLegendPanel extends JPanel {
 			int i = 0;
 			for (NNBLBrew brew : db.getBrews()) {
 				String yeast = brew.getYeastType();
-				if (!drawnItems.contains(yeast)) {
+				//if (!drawnItems.contains(yeast)) {
 					g2d.setColor(yt.getColorForYeastType(yeast));
 					g2d.fillOval(5, 5 + 15 * i, 10, 10);
 					g2d.setColor(Color.BLACK);
@@ -48,7 +47,7 @@ public class YeastLegendPanel extends JPanel {
 					g2d.drawOval(5, 5 + 15 * i, 10, 10);
 					drawnItems.add(yeast);
 					i++;
-				}
+				//}
 			}
 		}
 	}
@@ -57,11 +56,6 @@ public class YeastLegendPanel extends JPanel {
 		RenderingHints rh = new RenderingHints(RenderingHints.KEY_ANTIALIASING,
 				RenderingHints.VALUE_ANTIALIAS_ON);
 		g2d.setRenderingHints(rh);
-	}
-
-	@Override
-	public Dimension getPreferredSize() {
-		return new Dimension(150, 100);
 	}
 
 }

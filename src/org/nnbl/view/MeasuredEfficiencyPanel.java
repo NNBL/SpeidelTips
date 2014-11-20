@@ -8,11 +8,15 @@ import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.geom.Rectangle2D;
 
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 
 import org.nnbl.model.NNBLBrew;
 import org.nnbl.model.NNBLBrewDatabase;
@@ -29,6 +33,7 @@ public class MeasuredEfficiencyPanel extends JPanel implements MouseListener {
 	private float maxEfficiency = 100f;
 	private int borderSize = 0;
 	private TrendLine t = new PolyTrendLine(2);
+	protected boolean trendlinestatus = true;
 
 	public MeasuredEfficiencyPanel(NNBLBrewDatabase db, NNBLApp nnblApp) {
 		this.db = db;
@@ -47,7 +52,9 @@ public class MeasuredEfficiencyPanel extends JPanel implements MouseListener {
 		drawLines(g2d);
 		drawTitle(g2d);
 		if (db.size() > 0) {
-			drawTrendLine(g2d, getXYvalues(g2d));
+			if (trendlinestatus) {
+				drawTrendLine(g2d, getXYvalues(g2d));				
+			}
 			drawBrews(g2d);
 		} else {
 
@@ -172,20 +179,39 @@ public class MeasuredEfficiencyPanel extends JPanel implements MouseListener {
 		float xfactor = (float) e.getX() / (float) getWidth();
 		float yfactor = (float) e.getY() / (float) getHeight();
 
-		float x = xfactor * (maxWeight - minWeight) + minWeight;
-		float y = maxEfficiency - (yfactor * (maxEfficiency - minEfficiency));
-		String statusText = db.findNearestEfficiency(x, y);
+		if (e.getButton() == MouseEvent.BUTTON1) {
+			float x = xfactor * (maxWeight - minWeight) + minWeight;
+			float y = maxEfficiency
+					- (yfactor * (maxEfficiency - minEfficiency));
+			String statusText = db.findNearestEfficiency(x, y);
 
-		if (statusText.equals("")) {
-			nnblApp.setStatusText(" ");
-		} else {
-			nnblApp.setStatusText(statusText);
+			if (statusText.equals("")) {
+				nnblApp.setStatusText(" ");
+			} else {
+				nnblApp.setStatusText(statusText);
+			}
+
+		} else if (e.getButton() == MouseEvent.BUTTON3) {
+			JPopupMenu menu = new JPopupMenu();
+			JMenuItem trendlineitem = new JMenuItem("Toggle trendline");
+			trendlineitem.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					trendlinestatus = !trendlinestatus;
+					repaint();
+				}
+			});
+			menu.add(trendlineitem);
+			setComponentPopupMenu(menu);
 		}
+
 	}
-    @Override
-    public Dimension getPreferredSize() {
-        return new Dimension(200, 200);
-    }
+
+	@Override
+	public Dimension getPreferredSize() {
+		return new Dimension(200, 200);
+	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
