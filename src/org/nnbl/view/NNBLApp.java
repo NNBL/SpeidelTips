@@ -49,8 +49,6 @@ public class NNBLApp extends JFrame {
 
 	public static void main(String[] args) {
 		NNBLBrewDatabase brewbase = new NNBLBrewDatabase();
-		brewbase.loadBrewsFromFile("./nnbldata.csv");
-		System.out.println(brewbase.size() + " brews loaded from file");
 		NNBLApp app = new NNBLApp(brewbase);
 		app.setVisible(true);
 	}

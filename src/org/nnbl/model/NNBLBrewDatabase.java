@@ -181,15 +181,17 @@ public class NNBLBrewDatabase {
 				}
 				reader.close();
 			} else {
-				System.err.println("File " + pathname + " does not exist!");
+				System.err.println("File " + pathname + " does not exist!\n");
 			}
 		} catch (IOException e) {
 		}
-		Color[] colors = ColorSpan.generateColorSpan(db.size());
+		
+		if (db.size() > 0) {
+			Color[] colors = ColorSpan.generateColorSpan(db.size());
 
-		for (int i = 0; i < db.size(); i++) {
-			db.get(i).setColor(colors[i]);
+			for (int i = 0; i < db.size(); i++) {
+				db.get(i).setColor(colors[i]);
+			}			
 		}
-
 	}
 }
