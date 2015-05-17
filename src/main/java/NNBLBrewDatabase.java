@@ -1,13 +1,8 @@
-package org.nnbl.model;
-
-import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-
-import org.nnbl.utils.ColorSpan;
 
 public class NNBLBrewDatabase {
 	public static final int EFFICIENCY = 0;
@@ -132,7 +127,7 @@ public class NNBLBrewDatabase {
 					&& brew.getGrainweight() <= (grainweight + 50)
 					&& brew.getEfficiency() >= (efficiency - 0.4)
 					&& brew.getEfficiency() <= (efficiency + 0.4)) {
-				nearest += brew.getBrewName() + " by " + brew.getBrewer()
+				nearest += brew.getBrewname() + " by " + brew.getBrewer()
 						+ ", ";
 			}
 		}
@@ -148,7 +143,7 @@ public class NNBLBrewDatabase {
 					&& brew.getMashTemp() <= (temperature + 0.5)
 					&& brew.getAttenuation() >= (attenuation - 0.4)
 					&& brew.getAttenuation() <= (attenuation + 0.4)) {
-				nearest += brew.getYeastType() + " in " + brew.getBrewName()
+				nearest += brew.getYeasttype() + " in " + brew.getBrewname()
 						+ ", ";
 			}
 		}
@@ -158,12 +153,31 @@ public class NNBLBrewDatabase {
 	public int getNumberOfBrewsWith(String yeastType) {
 		int number = 0;
 		for (NNBLBrew brew : db) {
-			if (brew.getYeastType().equals(yeastType)) {
+			if (brew.getYeasttype().equals(yeastType)) {
 				number++;
 			}
 		}
 		return number;
 	}
+
+    public String dbAsCsv(){
+        StringBuilder csv = new StringBuilder("Brewer,Name,Grainweight,Efficiency,OG,FG,Mash temperature,Attenuation,Yeast type,Remarks\n");
+
+        for (NNBLBrew nnblBrew : db) {
+            csv.append(nnblBrew.getBrewer() + ",");
+            csv.append(nnblBrew.getBrewname() + ",");
+            csv.append(nnblBrew.getGrainweight() + ",");
+            csv.append(nnblBrew.getEfficiency() + ",");
+            csv.append(nnblBrew.getOriginalGravity() + ",");
+            csv.append(nnblBrew.getFinalGravity() + ",");
+            csv.append(nnblBrew.getMashTemp() + ",");
+            csv.append(nnblBrew.getAttenuation() + ",");
+            csv.append(nnblBrew.getYeasttype() + ",");
+            csv.append(nnblBrew.getRemarks() + "\n");
+
+        }
+        return csv.toString();
+    }
 
 	public void loadBrewsFromFile(String pathname) {
 		db.clear();
@@ -184,14 +198,7 @@ public class NNBLBrewDatabase {
 				System.err.println("File " + pathname + " does not exist!\n");
 			}
 		} catch (IOException e) {
-		}
-		
-		if (db.size() > 0) {
-			Color[] colors = ColorSpan.generateColorSpan(db.size());
-
-			for (int i = 0; i < db.size(); i++) {
-				db.get(i).setColor(colors[i]);
-			}			
+			e.printStackTrace();
 		}
 	}
 }
