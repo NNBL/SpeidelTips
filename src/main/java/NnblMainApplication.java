@@ -20,10 +20,7 @@ import javafx.stage.Stage;
 import javafx.util.converter.DoubleStringConverter;
 import javafx.util.converter.IntegerStringConverter;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -266,8 +263,9 @@ public class NnblMainApplication extends Application implements Initializable, C
     private void saveFile(){
         System.out.println("saving file");
         if (file != null){
-            try (BufferedWriter bw = new BufferedWriter(new PrintWriter(file))) {
-                bw.write(db.dbAsCsv());
+            try (Writer out = new BufferedWriter(new OutputStreamWriter(
+                    new FileOutputStream(file), "UTF-8"));) {
+                out.write(db.dbAsCsv());
             } catch (IOException e) {
                 e.printStackTrace();
 
