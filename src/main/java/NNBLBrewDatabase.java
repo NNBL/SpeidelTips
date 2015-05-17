@@ -120,34 +120,32 @@ public class NNBLBrewDatabase {
 
 	public String findNearestEfficiency(float grainweight, float efficiency) {
 
-		String nearest = "";
+		StringBuilder nearest = new StringBuilder();
 
 		for (NNBLBrew brew : db) {
 			if (brew.getGrainweight() >= (grainweight - 50)
 					&& brew.getGrainweight() <= (grainweight + 50)
 					&& brew.getEfficiency() >= (efficiency - 0.4)
 					&& brew.getEfficiency() <= (efficiency + 0.4)) {
-				nearest += brew.getBrewname() + " by " + brew.getBrewer()
-						+ ", ";
+				nearest.append(brew.getBrewname() + " by " + brew.getBrewer() + ", ");
 			}
 		}
-		return nearest;
+		return nearest.toString();
 	}
 
 	public String findNearestMashTemp(float temperature, float attenuation) {
 
-		String nearest = "";
+		StringBuilder nearest = new StringBuilder();
 
 		for (NNBLBrew brew : db) {
 			if (brew.getMashTemp() >= (temperature - 0.5)
 					&& brew.getMashTemp() <= (temperature + 0.5)
 					&& brew.getAttenuation() >= (attenuation - 0.4)
 					&& brew.getAttenuation() <= (attenuation + 0.4)) {
-				nearest += brew.getYeasttype() + " in " + brew.getBrewname()
-						+ ", ";
+				nearest.append(brew.getYeasttype() + " in " + brew.getBrewname() + ", ");
 			}
 		}
-		return nearest;
+		return nearest.toString();
 	}
 
 	public int getNumberOfBrewsWith(String yeastType) {
