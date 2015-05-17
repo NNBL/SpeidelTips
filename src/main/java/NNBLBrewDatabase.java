@@ -1,7 +1,4 @@
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 
 public class NNBLBrewDatabase {
@@ -182,8 +179,9 @@ public class NNBLBrewDatabase {
 		try {
 			File f = new File(pathname);
 			if (f.exists()) {
-				BufferedReader reader = new BufferedReader(new FileReader(
-						pathname));
+				BufferedReader reader = new BufferedReader(
+                        new InputStreamReader(
+                                new FileInputStream(pathname), "UTF8"));
 				String line = null;
 				while ((line = reader.readLine()) != null) {
 					if (!line.startsWith("Brewer,Name")) {
