@@ -45,5 +45,5 @@ dependencies {
 pmd {
     ignoreFailures = true
     sourceSets = [sourceSets.main]
-    ruleSets = [ "java-basic", "java-strings", "java-braces" ]
+    ruleSets = [ "java-basic", "java-strings", "java-braces", "java-strings", "java-sunsecure", "java-imports", "java-unusedcode"]
 }
