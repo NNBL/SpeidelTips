@@ -12,6 +12,7 @@ apply plugin: 'application'
 apply plugin: 'idea'
 apply plugin: 'findbugs'
 apply plugin: 'pmd'
+apply plugin: 'checkstyle'
 
 mainClassName = 'NnblMainApplication'
 version = '2.0.0'
@@ -35,4 +36,8 @@ pmd {
     ignoreFailures = true
     sourceSets = [sourceSets.main]
     ruleSets = [ "java-basic", "java-strings", "java-braces", "java-strings", "java-sunsecure", "java-imports", "java-unusedcode", "java-optimizations"]
+}
+
+checkstyle {
+    toolVersion = "6.6"
 }
