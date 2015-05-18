@@ -160,25 +160,25 @@ public class NNBLBrewDatabase {
 
         for (NNBLBrew nnblBrew : db) {
             csv.append(nnblBrew.getBrewer());
-            csv.append(",");
+            csv.append(',');
             csv.append(nnblBrew.getBrewname());
-            csv.append(",");
+            csv.append(',');
             csv.append(nnblBrew.getGrainweight());
-            csv.append(",");
+            csv.append(',');
             csv.append(nnblBrew.getEfficiency());
-            csv.append(",");
+            csv.append(',');
             csv.append(nnblBrew.getOriginalGravity());
-            csv.append(",");
+            csv.append(',');
             csv.append(nnblBrew.getFinalGravity());
-            csv.append(",");
+            csv.append(',');
             csv.append(nnblBrew.getMashTemp());
-            csv.append(",");
+            csv.append(',');
             csv.append(nnblBrew.getAttenuation());
-            csv.append(",");
+            csv.append(',');
             csv.append(nnblBrew.getYeasttype());
-            csv.append(",");
+            csv.append(',');
             csv.append(nnblBrew.getRemarks());
-            csv.append("\n");
+            csv.append('\n');
 
         }
         return csv.toString();
