@@ -12,6 +12,7 @@ apply plugin: 'java'
 apply plugin: 'application'
 apply plugin: 'idea'
 apply plugin: 'findbugs'
+apply plugin: 'pmd'
 
 mainClassName = 'NnblMainApplication'
 version = '2.0.0'
@@ -39,4 +40,10 @@ dependencies {
     // testCompile dependency to testCompile 'org.testng:testng:6.8.1' and add
     // 'test.useTestNG()' to your build script.
     testCompile 'junit:junit:4.12'
+}
+
+pmd {
+    ignoreFailures = true
+    sourceSets = [sourceSets.main]
+    ruleSets = [ "java-basic", "java-strings", "java-braces" ]
 }
