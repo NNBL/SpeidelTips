@@ -13,10 +13,26 @@ apply plugin: 'idea'
 apply plugin: 'findbugs'
 apply plugin: 'pmd'
 apply plugin: 'checkstyle'
+apply plugin: 'cpd'
 
 mainClassName = 'NnblMainApplication'
 version = '2.0.0'
+buildscript {
+    repositories {
+        // choose your prefered one
+        mavenCentral()
+        jcenter()
+    }
 
+    dependencies {
+        classpath 'de.aaschmid.gradle.plugins:gradle-cpd-plugin:0.4'
+    }
+}
+
+cpd {
+    language = 'java'
+    ignoreFailures = true
+}
 findbugs {
 	ignoreFailures = true
 	effort = "max"
@@ -41,3 +57,4 @@ pmd {
 checkstyle {
     toolVersion = "6.6"
 }
+
