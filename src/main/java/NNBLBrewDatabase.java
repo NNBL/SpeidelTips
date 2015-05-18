@@ -159,16 +159,26 @@ public class NNBLBrewDatabase {
         StringBuilder csv = new StringBuilder("Brewer,Name,Grainweight,Efficiency,OG,FG,Mash temperature,Attenuation,Yeast type,Remarks\n");
 
         for (NNBLBrew nnblBrew : db) {
-            csv.append(nnblBrew.getBrewer() + ",");
-            csv.append(nnblBrew.getBrewname() + ",");
-            csv.append(nnblBrew.getGrainweight() + ",");
-            csv.append(nnblBrew.getEfficiency() + ",");
-            csv.append(nnblBrew.getOriginalGravity() + ",");
-            csv.append(nnblBrew.getFinalGravity() + ",");
-            csv.append(nnblBrew.getMashTemp() + ",");
-            csv.append(nnblBrew.getAttenuation() + ",");
-            csv.append(nnblBrew.getYeasttype() + ",");
-            csv.append(nnblBrew.getRemarks() + "\n");
+            csv.append(nnblBrew.getBrewer());
+            csv.append(",");
+            csv.append(nnblBrew.getBrewname());
+            csv.append(",");
+            csv.append(nnblBrew.getGrainweight());
+            csv.append(",");
+            csv.append(nnblBrew.getEfficiency());
+            csv.append(",");
+            csv.append(nnblBrew.getOriginalGravity());
+            csv.append(",");
+            csv.append(nnblBrew.getFinalGravity());
+            csv.append(",");
+            csv.append(nnblBrew.getMashTemp());
+            csv.append(",");
+            csv.append(nnblBrew.getAttenuation());
+            csv.append(",");
+            csv.append(nnblBrew.getYeasttype());
+            csv.append(",");
+            csv.append(nnblBrew.getRemarks());
+            csv.append("\n");
 
         }
         return csv.toString();
